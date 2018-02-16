@@ -9,15 +9,10 @@ android:
     - android-26
     - sys-img-armeabi-v7a-android-26
 before_script:
-  - echo "DEBUG: sdkmanager"
   - echo yes | sdkmanager "platforms;android-26"
-  - echo "DEBUG: avdmanager"
   - avdmanager create avd --force --name test --package 'system-images;android-26;google_apis;x86'
-  - echo "DEBUG: emulator"
   - emulator -avd test -no-audio -no-window &
-  - echo "DEBUG: wait-for-emulator"
   - android-wait-for-emulator
-  - echo "DEBUG: keyevent"
   - adb shell input keyevent 82 &
 script:
   - echo "gradle connectedCheck"
