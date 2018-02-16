@@ -6,7 +6,7 @@ android:
     - build-tools-26.0.2
     - android-26
     - sys-img-armeabi-v7a-android-26
-  script:
+  before_script:
     - echo "Installing android-26"
     - echo yes | sdkmanager "platforms;android-26"
     - echo "creating avd"
@@ -17,5 +17,6 @@ android:
     - android-wait-for-emulator
     - echo "send keyevent"
     - adb shell input keyevent 82 &
+  script:
     - echo "gradle connectedCheck"
     - ./gradlew connectedCheck
